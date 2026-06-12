@@ -32,7 +32,7 @@
 
             /* Layout: */ 
             .container {
-                max-width: 860px;
+                max-width: 1100px;
                 margin: 0 auto;
                 padding: 0 1.5rem; 
             }
@@ -244,11 +244,14 @@
                 gap: 1rem;
             }
 
-            activities li {
-                background: var(--white);
-                border: 1px solid var(--gray-border);
-                border-radius: 10px;
-                padding: 1rem 1.25rem;
+            #activities li {
+                border-left: 3px solid var(--purple-mid);
+                border-radius: 0;
+                padding-left: 1.25rem;
+                background: transparent;
+                border-top: none;
+                border-right: none;
+                border-bottom: none
             }
 
             #activities li strong {display: block;}
@@ -283,7 +286,7 @@
             @media (max-width: 600px) {
                 #about .grid { grid-template-columns: 1fr; }
                 #hero h1 { font-size: 2rem; }
-                nav ul { gap: 1rem; }
+                nav ul { display: none; }
             }
         </style>
     </head>
@@ -312,7 +315,7 @@
                     I build things that connect hardware to the real world, still exploring electronics though. Currently Studying FSC and practicing IoT development with SPARK.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">See my porjects</a>
+                    <a href="#projects" class="btn btn-primary">See my projects</a>
                     <a href="#contact" class="btn btn-outline">Get in touch</a>
                 </div>
             </div>
@@ -475,7 +478,7 @@
         </section>
 
         <footer>
-            ...Regards...
+            Thanks for stopping by.
         </footer>
     </body>
 </html>
