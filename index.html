@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> Razi Haider -- IoT & Embedded Systems </title>
+        <style>
+            *, *::before, *::after {box-sizing: border-box; margin: 0; padding: 0}
+
+            /* Thought it'd be a good idea to place all the coulours I used further in the webste here. */ 
+            :root {
+                --purple-light: #EEEDFE;
+                --purple-mid: #534AB7;
+                --purple-dark: #3C3489;
+                --gray-bg: #F6F5F0;
+                --gray-border: #D3D1C7;
+                --gray-text: #5F5E5A;
+                --text: #2C2C2A; 
+                --white: #FFFFFF;
+            }
+
+            body {
+                font-family: 'Segoe UI', system-ui, sans-serif;
+                font-size: 16px;
+                line-height: 1.7;
+                color: var(--text);
+                background: var(--gray-bg);
+            }
+
+            a {color: var(--purple-mid); text-decoration: none; }
+            a:hover {text-decoration: underline; }
+
+            /* Layout: */ 
+            .container {
+                max-width: 860px;
+                margin: 0 auto;
+                padding: 0 1.5rem; 
+            }
+
+            section {padding: 4rem 0; }
+
+            /* Navigation: */
+            nav {
+                position: sticky;
+                top: 0;
+                background: var(--white);
+                border-bottom: 1px solid var(--gray-border);
+                z-index: 100;
+            }
+
+            nav .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-top: 0.9rem;
+                padding-bottom: 0.9rem;
+            }
+
+            .nav-name {
+                font-weight: 600;
+                font-size: 1rem;
+                color: var(--text);
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 2rem;
+            }
+
+            nav ul a {
+                font-size: 0.9rem;
+                color: var(--gray-text);
+            }
+
+            nav ul a:hover {
+                color:var(--purple-mid);
+                text-decoration: none;
+            }
+
+            /* Hero: */
+            #hero {
+                background: var(--white);
+                border-bottom: 1px solid var(--gray-border);
+                text-align: center;
+                padding: 5rem 0 4rem;
+            }
+
+            #hero h1 {
+                font-size: 2.6rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+
+            #hero .tagline {
+                font-size: 1.1rem;
+                color: var(--gray-text);
+                margin: 0.5rem 0 2rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 0.6rem 1.4rem;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: opacity 0.15s;
+            }
+
+            .btn:hover {
+                opacity: 0.85;
+                text-decoration: none;
+            }
+
+            .btn-primary {
+                background: var(--purple-mid);
+                color: #FFF;
+            }
+
+            .btn-outline {
+                background: transparent;
+                border: 1.5px solid var(--gray-border);
+                color: var(--text);
+            }
+
+            /* About: */
+            #about .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .card{
+                background: var(--white);
+                border: 1px solid var(--gray-border);
+                border-radius: 12px;
+                padding: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--gray-text);
+                margin-bottom: 0.75rem;
+            }
+
+            .skill-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .tag {
+                background: var(--purple-light);
+                color: var(--purple-dark);
+                font-size: 0.8rem;
+                font-weight: 500;
+                padding: 0.25rem 0.7rem;
+                border-radius: 999px;
+            }
+
+            /* Section headings: */
+            .section-heading {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 1.75rem;
+            }
+
+            /* Projects: */ 
+            #projects .project-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .project-card {
+                background: var(--white);
+                border: 1px solid var(--gray-border);
+                border-radius: 12px;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-card.featured {
+                border-color: #AFA9EC;
+                background: var(--purple-light);
+            }
+
+            .project-card h3 {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            .project-card .desc {
+                font-size: 0.875rem;
+                color: var(--gray-text);
+                flex: 1;
+            }
+
+            .project-card .tech-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                margin-top: 0.25rem;
+            }
+
+            .tech-tag {
+                font-size: 0.75rem;
+                background: var(--gray-bg);
+                color: var(-gray-text);
+                border: 1px solid var(--gray-border);
+                padding: 0.15rem 0.5rem;
+                border-radius: 6px;
+            }
+
+            .project-card.featured .tech-tag {
+                background: rgba(255,255,255,0.6);
+                border-color: #AFA9EC;
+                color: var(--purple-dark);
+            }
+
+            .project-link {
+                font-size: 0.82rem;
+                font-weight: 500;
+                margin-top: 0.5rem;
+            }
+
+            /* Activities: */ 
+            #activities ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            activities li {
+                background: var(--white);
+                border: 1px solid var(--gray-border);
+                border-radius: 10px;
+                padding: 1rem 1.25rem;
+            }
+
+            #activities li strong {display: block;}
+            #activities li span { font-size: 0.875rem; color: var(--gray-text);}
+            
+            /* Contact: */
+            #contact {
+                background: var(--white);
+                border-top: 1px solid var(--gray-border);
+                text-align: center;
+            }
+
+            #contact .links {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.25rem 2rem;
+                margin-top: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            /* Footer: */
+            footer {
+                text-align: center;
+                padding: 1.5rem; 
+                font-size: 0.8rem;
+                color: var(--gray-text);
+                border-top: 1px solid var(--gray-border);
+            }
+
+            /* Mobile - responsive: */
+            @media (max-width: 600px) {
+                #about .grid { grid-template-columns: 1fr; }
+                #hero h1 { font-size: 2rem; }
+                nav ul { gap: 1rem; }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Nav: -->
+        <nav>
+            <div class="container">
+                <span class="nav-name">Razi Haider</span>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://github.com/razihaider14" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero: -->
+        <section id="hero">
+            <div class="container">
+                <h1>Razi Haider</h1>
+                <p class="tagline">IoT & Embedded Systems Developer - Pre Engineering Student</p>
+                <p style="max-width: 540px; margin: 0 auto 2rem; color: var(--gray-text); font-size: 0.95rem;">
+                    I build things that connect hardware to the real world, still exploring electronics though. Currently Studying FSC and practicing IoT development with SPARK.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">See my porjects</a>
+                    <a href="#contact" class="btn btn-outline">Get in touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About: -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading">About me</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Background</h3>
+                        <p style="font-size: 0.9rem; color: var(--gray-text);">
+                            Self-taught IoT developer with a focus on real world problems. I started on Arduino, progressed to esp32, and gradually built up to full systems with encrypted communication, costumized dashboards, and production-ready firmware.
+                        </p>
+                        <br>
+                        <p style="font-size: 0.85rem; color: var(--gray-text);">
+                            Islamabad, Pakistan &nbsp;·&nbsp;
+                            HSSC (Pre-Engineering), FBISE - 93%
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Skills</h3>
+                        <p style="font-size: 0.8rem; color: var(--gray-text); margin-bottom: 0.75rem;">Hardware & microcontrollers</p>
+                        <div class="skill-tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">Soldering</span>
+                            <span class="tag">3D design</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--gray-text); margin: 0.75rem 0 0.5rem;">Protocols & communication</p>
+                        <div class="skill-tags">
+                            <span class="tag">WiFi</span>
+                            <span class="tag">MQTT</span>
+                            <span class="tag">HTTP</span>
+                            <span class="tag">TLS/SSL</span>
+                            <span class="tag">Bluetooth</span>
+                            <span class="tag">OTA Updates</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--gray-text); margin: 0.75rem 0 0.5rem;">Software & tools</p>
+                        <div class="skill-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Node-red</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">EasyEDA</span>
+                            <span class="tag">Fusion 360</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Journey: -->
+        <section id="journey">
+            <div class="container">
+                <h2 class="section-heading">My journey</h2>
+                <div class="card">
+                    <p style="font-size: 0.9rem; color: var(--gray-text);">
+                        It all started when I entered grade 11. I had no practical knowledge at that time. Then I joined SPARK (formerly known as InLights Developers Club), I started learning C++, Python, Html, Css. Then I moved towards IoT, starting with Arduino. I started making small projects to learn. Then I joined Hack Club, and made some projects there.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects: -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-heading">Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>NexEntry</h3>
+                        <p class="desc">RFID-based smart attendance management system. Features a Demo mode that simulated time progression for testing without waiting for time to pass irl</p>
+                        <div class="tech-row">
+                            <span class="tech-tag">ESP32</span>
+                            <span class="tech-tag">RFID</span>
+                            <span class="tech-tag">MQTT</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/razihaider14/NexEntry" target="_blank">View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Sentinel</h3>
+                        <p class="desc">ESP32 smart lock with three security levels. Implements TOTP authentication. TLS-encrypted MQTT, and a Node-red dashboard for control</p>
+                        <div class="tech-row">
+                            <span class="tech-tag">ESP32</span>
+                            <span class="tech-tag">TOTP</span>
+                            <span class="tech-tag">TLS</span>
+                            <span class="tech-tag">Node-Red</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/razihaider14/Sentinel" target="_blank">View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>HydroGuard</h3>
+                        <p class="desc">Collaborative IoT project for a real-time Flood Mitigation and Control System</p>
+                        <div class="tech-row">
+                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">Disaster Management</span>
+                            <span class="tech-tag">Collab</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/cevique/hydorguard" target="_blank">View on GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Hybrid Bike</h3>
+                        <p class="desc">Team project converting a common petrol bike into a hybird petrol-electric vehicle.</p>
+                        <div class="tech-row">
+                            <span class="tech-tag">Mechanics</span>
+                            <span class="tech-tag">Team</span>
+                            <span class="tech-tag">EV</span>
+                        </div>
+                    </div>
+                    <div class="project-card featured">
+                        <h3>NexHub v2 <span style="font-size: 0.75rem; font-weight: 400; color: var(--purple-mid); ">In progress</span></h3>
+                        <p class="desc">Advanced PCB project built with Macondo Hack Club. A more complex revision of the original NexHub with improved hardware design. Might also have a 3d designed enclosure</p>
+                        <div class="tech-row">
+                            <span class="tech-tag">PCB</span>
+                            <span class="tech-tag">EasyEDA</span>
+                            <span class="tech-tag">Macondo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities: -->
+        <section id="activities">
+            <div class="container">
+                <h2 class="section-heading">Activities</h2>
+                <ul>
+                    <li>
+                        <strong>SPARK Technology Club : Head of IoT @ HCCS Chapter</strong>
+                        <span>Inter-institutional club based in Nust and multiple other universities. 2024-Present</span>
+                    </li>
+                    <li>
+                        <strong>Hack Club : Member</strong>
+                        <span>Global high school makers community. January 2026-Present</span>
+                    </li>
+                    <li>
+                        <strong>NUST NYSEP : Electrical Engineering Track</strong>
+                        <span>Youth Student Engagement Program participant. 2025</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-heading">Get in touch</h2>
+                <p style="color: var(--gray-text); max-width: 500px; margin: 0 auto;">
+                    Contact me if you want to talk on any relevant topic, I'm available at all times...
+                </p>
+                <div class="links">
+                    <a href="mailto:therazi14@gmail.com">therazi14@gmail.com</a>
+                    <a href="https://github.com/razihaider14" target="_blank">github.com/razihaider14</a>
+                    <a href="https://linkedin.com/in/razihaider14" target="_blank">linkedin.com/in/razihaider14</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            ...Regards...
+        </footer>
+    </body>
+</html>
