@@ -21,7 +21,7 @@ It's deliberately kept simple. It only uses:
 - GitHub pages (for hosting)
 
 ## Why I built it
-Just to get an alternative to CV, also I wanted to make a website, I haven't uploaded one on github before, though I have made some.
+As an alternative to CV, also I wanted to make a website, I haven't uploaded one on github before, though I have made some.
 
 ## How to run locally
 Just open the index.html on your browser and here you go.
